@@ -1,0 +1,39 @@
+
+-- idからvalueを取得
+$('#answer_Q_zip_A_1').val()
+
+-- name属性からvalue取得
+$('[name="answer_Q_zip_A_1"]').val()
+
+-- formのid取得
+$('form').attr('id')
+
+-- checkboxの値取得
+  <input type="checkbox" name="zebra" value="鳥精">鳥精
+  <input type="checkbox" name="zebra" value="豚精">豚精
+  <input type="checkbox" name="zebra" value="ひな皮" checked="checked">ひな皮
+  <input type="checkbox" name="zebra" value="シマウマ" checked="checked">シマウマ
+  上記のようなチェックボックスがあった場合
+
+  var valAry = $("[name=zebra]:checked").map(function(index, el) { return $(this).val(); });
+  で全部取得できる
+  htmlのコードでcheckboxのnameを同じにして、idは別々にするのがポイント
+
+  $("[name=autodelete]:checked").map(function(index, el) { return $(this).val(); })
+
+--  チェックボックス全てにチェックor外す
+<p><input type="checkbox" name="all" value="all" id="all">：全てにチェック</p>
+<p><input type="checkbox" name="city[]" value="高崎">：高崎</p>
+<p><input type="checkbox" name="city[]" value="前橋">：前橋</p>
+<p><input type="checkbox" name="city[]" value="太田">：太田</p>
+
+$(function() { 
+  $('#all').change(function() {
+    if ($(this).prop('checked')) {
+      $('input[name="city[]"]').prop('checked', true);
+    } else {
+      $('input[name="city[]"]').prop('checked', false);
+    }
+  });
+});
+
