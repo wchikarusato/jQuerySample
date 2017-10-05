@@ -1,0 +1,5 @@
+var obj = { 1:"tokyo", 2:"nagoya", 3:"osaka" };
+obj = $.map(obj, function(val, key) {
+    return (val + ': ' + key);
+});
+alert(obj);
