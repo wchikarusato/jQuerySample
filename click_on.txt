@@ -1,4 +1,4 @@
-�悭����N���b�N�C�x���g�̎�������
+よくあるクリックイベントの実験結果
 
 <script>
 var href = window.location.href
@@ -26,22 +26,22 @@ $(function() {
 }
 </script>
 
-id��divMakerModal, class��makerModal�̂Ƃ���Z���N�g�{�b�N�X���������Ƃ���B
-��̗Ⴞ�� sample1�`4�܂Ŕ��������Asample5�ł���ƃC�x���g��������B
-�������A.click�͌�X�������l�Ȃ̂ŁA�o�������.on���g������
+idがdivMakerModal, classがmakerModalのとあるセレクトボックスがあったとする。
+上の例だと sample1～4まで発動せず、sample5でやっとイベント発動する。
+しかし、.clickは後々消される様なので、出来る限り.onを使いたい
 
-document�łȂ��Z���N�^.on�Ƃ��鎖�œ����l�ł���
+documentでなくセレクタ.onとする事で動く様である
 
 <script>
 var href = window.location.href
 $(function() {
-  // ����
+  // 改良
   $('.makerModal').on('click', function(){
     sendEventToGA('input', 'tap_area_test', href + '#maker_shashu');
   });
 }
 </script>
 
-on�ɂ�click�ȊO�ɂ��_�u���N���b�N���L�[�A�`�F���W�C�x���g��������̂ōX�ɕ֗�
-keydown keyup keypress change �̗l�ɔ��p�X�y�[�X�ŕ����w��\
+onにはclick以外にもダブルクリックや上キー、チェンジイベント等があるので更に便利
+keydown keyup keypress change の様に半角スペースで複数指定可能
 
