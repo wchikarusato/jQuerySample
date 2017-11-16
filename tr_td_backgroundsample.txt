@@ -1,0 +1,47 @@
+## subject
+  テーブルのtdをマウスオーバーでハイライト、クリックでtr色付けするサンプル
+
+## point
+- jQuery内でstyle設定してるので、これだけの為にcssで設定とか不要
+- classに対してcssで色が設定されていれば
+  以下の様に background-color を''に設定する事で、ハイライト前の色が反映される
+  $(selector).css('background-color','');
+
+- 最初の$('tr').eachファンクションはhoverが離れた時用の前準備。
+  addclassしたのは selector に $(this).attr('class') で取り出している。
+  つまり、これがないとずっと灰色(#CCC)になる
+- 最後のbackground-colorのrgb(255, 137, 137)判定は背景色が#ff8989かどうか判断する為に使用している。
+  染める色を変えるならrgb()の値も一緒に変える必要がある
+
+## code
+<script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  var getTr;
+  $('tr').each(function(x){
+    x = x + 1;
+    $(this).addClass('tr' + x);
+    $(this).children().not('th').each(function(i){
+      i = i + 1;
+      $(this).addClass('item' + i);
+    });
+  });
+  
+  $('td').each(function(){
+    var selector = '.' + $(this).attr('class');
+    $(this).hover(function(){
+      $(this).css('background-color','#CCC');
+    },function(){
+      $(selector).css('background-color','');
+    });	
+  });
+  
+  $('tr').click(function(){
+    if($(this).css('background-color') == 'rgb(255, 137, 137)'){
+      $(this).css('background-color','');
+    }else{
+      $(this).css('background-color','#ff8989');
+    }
+  });
+});
+</script>
